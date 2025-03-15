@@ -14,6 +14,10 @@ You can install Alluka from PyPI using the following command in any Python 3.11 
 python -m pip install -U alluka
 ```
 
+# Support
+
+Go to the [support server](https://discord.gg/bZ7BrYJ63g) for support.
+
 # Contributing
 
 Before contributing you should read through the
