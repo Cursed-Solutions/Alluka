@@ -43,7 +43,7 @@ class TestAsyncSelfInjecting:
         mock_callback = mock.Mock()
         mock_client = mock.AsyncMock()
 
-        with pytest.warns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning, match=".*"):
             self_injecting = alluka.AsyncSelfInjecting(mock_client, mock_callback)
 
         result = await self_injecting()
@@ -54,7 +54,7 @@ class TestAsyncSelfInjecting:
     def test_callback_property(self) -> None:
         mock_callback = mock.Mock()
 
-        with pytest.warns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning, match=".*"):
             self_injecting = alluka.AsyncSelfInjecting(mock.Mock(), mock_callback)
 
         assert self_injecting.callback is mock_callback
@@ -65,7 +65,7 @@ class TestSelfInjecting:
         mock_callback = mock.Mock()
         mock_client = mock.Mock()
 
-        with pytest.warns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning, match=".*"):
             self_injecting = alluka.SelfInjecting(mock_client, mock_callback)
 
         result = self_injecting()
@@ -76,7 +76,7 @@ class TestSelfInjecting:
     def test_callback_property(self) -> None:
         mock_callback = mock.Mock()
 
-        with pytest.warns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning, match=".*"):
             self_injecting = alluka.SelfInjecting(mock.Mock(), mock_callback)
 
         assert self_injecting.callback is mock_callback

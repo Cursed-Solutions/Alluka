@@ -169,27 +169,27 @@ def test_get_client_when_not_set_and_default() -> None:
 def test_get() -> None:
     mock_client = mock.Mock()
 
-    with alluka.local.scope_client(mock_client), pytest.warns(DeprecationWarning):
+    with alluka.local.scope_client(mock_client), pytest.warns(DeprecationWarning, match=".*"):
         assert alluka.local.get() is mock_client  # pyright: ignore[reportDeprecated]
 
 
 def test_get_when_context_set() -> None:
     mock_context = mock.Mock()
 
-    with alluka.local.scope_context(mock_context), pytest.warns(DeprecationWarning):
+    with alluka.local.scope_context(mock_context), pytest.warns(DeprecationWarning, match=".*"):
         assert alluka.local.get() is mock_context.injection_client  # pyright: ignore[reportDeprecated]
 
 
 def test_get_when_not_set() -> None:
     with (
         pytest.raises(RuntimeError, match="No Alluka client set for the current scope"),
-        pytest.warns(DeprecationWarning),
+        pytest.warns(DeprecationWarning, match=".*"),
     ):
         alluka.local.get()  # pyright: ignore[reportDeprecated]
 
 
 def test_get_when_not_set_and_default() -> None:
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(DeprecationWarning, match=".*"):
         result = alluka.local.get(default=None)  # pyright: ignore[reportDeprecated]
 
     assert result is None

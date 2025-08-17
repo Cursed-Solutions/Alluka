@@ -238,19 +238,23 @@ ignore = [
     "B008",    # Do not perform function call `` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
     "PLW0603", # Using the global statement to update `` is discouraged
     "UP007",   # [*] Use `X | Y` for type annotations
+    "UP045",   # Use `X | None` for type annotations
 ]
 "tests/test_async_callback_di.py" = [
     "B008",    # Do not perform function call `` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
     "UP007",   # [*] Use `X | Y` for type annotations
+    "UP045",   # Use `X | None` for type annotations
 ]
 "tests/test_callback_di_future_annotations.py" = [
     "B008",     # Do not perform function call `` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
     "PLW0603",  # Using the global statement to update `` is discouraged
     "UP007",    # [*] Use `X | Y` for type annotations
+    "UP045",   # Use `X | None` for type annotations
 ]
 "tests/test_callback_di.py" = [
     "B008",    # Do not perform function call `` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
     "UP007",   # [*] Use `X | Y` for type annotations
+    "UP045",   # Use `X | None` for type annotations
 ]
 
 [tool.ruff.lint.mccabe]
