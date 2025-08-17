@@ -91,7 +91,7 @@ class TestClient:
         mock_callback = mock.Mock()
         client = alluka.Client()
 
-        with pytest.warns(DeprecationWarning, match="*"):
+        with pytest.warns(DeprecationWarning, match=".*"):
             result = client.as_async_self_injecting(mock_callback)  # pyright: ignore[reportDeprecated]
 
         assert isinstance(result, alluka.AsyncSelfInjecting)  # pyright: ignore[reportDeprecated]
@@ -102,7 +102,7 @@ class TestClient:
         mock_callback = mock.Mock()
         client = alluka.Client()
 
-        with pytest.warns(DeprecationWarning, match="*"):
+        with pytest.warns(DeprecationWarning, match=".*"):
             result = client.as_self_injecting(mock_callback)  # pyright: ignore[reportDeprecated]
 
         assert isinstance(result, alluka.SelfInjecting)  # pyright: ignore[reportDeprecated]
