@@ -65,11 +65,12 @@ jobs:
           pattern: coverage.*
           #merge-multiple: true
           path: ./artifacts/coverage/
+          recurse_submodules: true
 
       - name: Combine coverage artifacts
         run: nox -s combine-coverage
 
-      - name: Upload coverage to codecovcodecov-action
+      - name: Upload coverage to codecov
         uses: codecov/codecov-action@fdcc8476540edceab3de004e990f80d881c6cc00 # v5.5.0
         with:
           directory: ./artifacts/coverage/
