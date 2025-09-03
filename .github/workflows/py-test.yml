@@ -43,6 +43,7 @@ jobs:
           path: artifacts/.coverage
           include-hidden-files: true
           if-no-files-found: error
+          retention-days: 1
 
   upload-coverage:
     needs: [py-test]
@@ -73,4 +74,14 @@ jobs:
       - name: Upload coverage to codecov
         uses: codecov/codecov-action@fdcc8476540edceab3de004e990f80d881c6cc00 # v5.5.0
         with:
-          directory: ./artifacts/coverage/
+          files: ./artifacts/coverage/coverage.xml
+
+      - name: Create coverage artifacts
+        uses: actions/upload-artifact@de65e23aa2b7e23d713bb51fbfcb6d502f8667d8
+        with:
+          name: .coverage.combined
+          path: |
+            artifacts/coverage.xml
+            artifacts/coverage_html
+          include-hidden-files: true
+          if-no-files-found: error
