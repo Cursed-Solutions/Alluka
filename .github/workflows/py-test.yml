@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@de65e23aa2b7e23d713bb51fbfcb6d502f8667d8
         with:
           name: .coverage.${{ matrix.os }}.${{ matrix.python-version }}
-          path: .coverage
+          path: artifacts/.coverage
           include-hidden-files: true
           if-no-files-found: error
 
