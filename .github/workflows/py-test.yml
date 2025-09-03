@@ -45,7 +45,7 @@ jobs:
           if-no-files-found: error
 
   upload-coverage:
-    needs: [test]
+    needs: [py-test]
     runs-on: ubuntu-latest
 
     permissions:
