@@ -1,3 +1,4 @@
 [submodule "piped"]
 	path = piped
 	url = https://github.com/FasterSpeeding/Piped.git
+	branch = task/fix-coverage-tests
