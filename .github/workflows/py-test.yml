@@ -24,7 +24,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           submodules: "true"
 
@@ -34,35 +34,41 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Run tests
-        run: nox -s test
+        run: nox -s test-coverage
 
-  # TODO: Could we switch over to gather coverage from the normal test runs and combining
-  # the result once https://github.com/nedbat/coveragepy/issues/1002 is fixed?
+      - name: Create coverage artifacts
+        uses: actions/upload-artifact@de65e23aa2b7e23d713bb51fbfcb6d502f8667d8
+        with:
+          name: artifacts/coverage/.coverage.${{ matrix.os }}.${{ matrix.python-version }}
+          path: .coverage
+          include-hidden-files: true
+          if-no-files-found: error
+
   upload-coverage:
-    # needs: [test]
+    needs: [test]
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           submodules: "true"
 
       - name: Install Python
         uses: ./.github/actions/setup-py
 
-      - name: Record coverage
-        run: nox -s test-coverage
-
-      - name: Upload coverage
-        uses: paambaati/codeclimate-action@f429536ee076d758a24705203199548125a28ca7
-        env:
-          CC_TEST_REPORTER_ID: a965935acdc9066802d7201945219784c0f24d22e8a2dff0e6529207726bc8af
+      - name: Download artifacts
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
         with:
-          coverageLocations: .coverage.xml:coverage.py
+          pattern: artifacts/coverage/.coverage.*
+          merge-multiple: true
 
-      - name: Archive coverage
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - name: Combine coverage artifacts
+        run: nox -s combine-coverage
         with:
-          name: coverage
-          path: ./coverage_html
-          if-no-files-found: error
+          directory: ./artifacts/coverage/
+
+      - name: Upload coverage to codecovcodecov-action
+        uses: codecov/codecov-action@fdcc8476540edceab3de004e990f80d881c6cc00 # v5.5.0

@@ -12,17 +12,17 @@ on:
       - synchronize
       - closed
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   deploy-docs-preview:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
       - name: Fetch merge branch
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -35,7 +35,7 @@ jobs:
         if: github.event.action != 'closed'
         run: |
           mkdir site
-          nox -s generate-docs -- -o ./site
+          nox -s generate-docs -- -o ./artifacts/site
 
       - name: Deploy preview
         uses: FasterSpeeding/pr-preview-action@task/override-committer
@@ -43,4 +43,4 @@ jobs:
           git-config-email: "120557446+always-on-duty[bot]@users.noreply.github.com"
           git-config-name: "always-on-duty[bot]"
           preview-branch: docs
-          source-dir: ./site/
+          source-dir: ./artifacts/site/
