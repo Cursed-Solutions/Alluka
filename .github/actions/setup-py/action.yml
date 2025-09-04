@@ -9,7 +9,7 @@ runs:
   using: composite
   steps:
     - name: Set up Python ${{ inputs.python-version }}
-      uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
+      uses: actions/setup-python@3d1e2d2ca0a067f27da6fec484fce7f5256def85
       id: install-py
       with:
         python-version: ${{ inputs.python-version }}
