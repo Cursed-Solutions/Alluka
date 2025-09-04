@@ -45,22 +45,12 @@ docs = [
     "mkdocs-material>=8.5.11",
     "mkdocs-minify-plugin>=0.6.4",
 ]
-freeze-locks = ["uv"]
 lint = [
     "codespell>=2.2.2",
     "pre-commit-hooks>=4.4",
     "slotscheck>=0.16.1",
     "ruff",
 ]
-publish = ["flit>=3.8.0"]
-reformat = [
-    "black>=22.10.0",
-    "isort>=5.11.3",
-    "pre-commit-hooks>=4.4",
-    "pycln>=2.1.2",
-    "sort-all>=1.2",
-]
-templating = ["Jinja2>=3.1.2"]
 tests = [
     "pytest>=7",
     "pytest-cov>=4",
@@ -88,6 +78,7 @@ target-version = ["py311"]
 [tool.coverage.run]
 concurrency = ["multiprocessing"]
 parallel = true
+relative_files = true
 branch = true
 timid = false
 source = ["alluka"]
