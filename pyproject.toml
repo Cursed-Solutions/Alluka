@@ -88,6 +88,7 @@ target-version = ["py311"]
 [tool.coverage.run]
 concurrency = ["multiprocessing"]
 parallel = true
+relative_files = true
 branch = true
 timid = false
 source = ["alluka"]
