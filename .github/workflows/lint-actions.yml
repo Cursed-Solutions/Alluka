@@ -1,0 +1,14 @@
+name: Lint Actions
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  actionlint:
+    uses: FasterSpeeding/Piped/.github/workflows/lint-actions.yml@f824d61c518eb6a04b59e6b02980e5ce0fd80a50

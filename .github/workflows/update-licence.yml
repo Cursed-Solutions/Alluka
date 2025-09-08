@@ -7,25 +7,5 @@ on:
 
 jobs:
   update-licence:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-        with:
-          submodules: "true"
-
-      - name: Install Python
-        uses: ./.github/actions/setup-py
-
-      - name: Update licence
-        run: nox -s update-licence
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@18e469570b1cf0dfc11d60ec121099f8ff3e617a
-        with:
-          author: "always-on-duty[bot] <120557446+always-on-duty[bot]@users.noreply.github.com>"
-          branch: task/update-licence
-          commit-message: Update licence
-          committer: "always-on-duty[bot] <120557446+always-on-duty[bot]@users.noreply.github.com>"
-          title: Update licence
-          token: ${{ secrets.ACTIONS_TOKEN || secrets.GITHUB_TOKEN }}
+    uses: FasterSpeeding/Piped/.github/workflows/update-licence.yml@f824d61c518eb6a04b59e6b02980e5ce0fd80a50
+    secrets: inherit

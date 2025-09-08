@@ -2,33 +2,12 @@ name: Publish documentation
 
 on:
   workflow_call:
-  workflow_dispatch:
+  release:
+    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
+    types:
+      - published
 
 jobs:
   publish-docs:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-        with:
-          submodules: "true"
-
-      - name: Install Python
-        uses: ./.github/actions/setup-py
-
-      - name: Build docs
-        id: doc_info
-        run: |
-          mkdir site
-          nox -s generate-docs -- -o ./artifacts/site -j
-          echo "GIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_STATE
-
-      - name: Push
-        uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8
-        with:
-          branch: docs
-          commit-message: "${{ steps.doc_info.outputs.GIT_HASH }} docs (${{ github.event.release.tag_name || github.event.ref }})"
-          clean-exclude: pr-preview
-          folder: ./artifacts/site
-          git-config-email: "120557446+always-on-duty[bot]@users.noreply.github.com"
-          git-config-name: "always-on-duty[bot]"
+    uses: FasterSpeeding/Piped/.github/workflows/release-docs.yml@f824d61c518eb6a04b59e6b02980e5ce0fd80a50
+    secrets: inherit

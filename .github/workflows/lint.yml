@@ -1,9 +1,5 @@
 name: Lint
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 on:
   push:
     branches:
@@ -15,24 +11,6 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-        with:
-          submodules: "true"
-
-      - name: Install Python
-        uses: ./.github/actions/setup-py
-
-      - name: Lint markup
-        run: nox -s verify-markup
-
-      - name: Check spelling
-        run: nox -s spell-check
-
-      - name: Lint with Ruff
-        run: nox -s lint
-
-      - name: Check slotting
-        run: nox -s slot-check
+    uses: FasterSpeeding/Piped/.github/workflows/lint.yml@f824d61c518eb6a04b59e6b02980e5ce0fd80a50
+    with:
+      sessions: "verify-markup spell-check lint slot-check"

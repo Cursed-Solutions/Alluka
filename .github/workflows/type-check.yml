@@ -1,9 +1,5 @@
 name: Type check
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 on:
   push:
     branches:
@@ -15,15 +11,4 @@ on:
 
 jobs:
   type-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-        with:
-          submodules: "true"
-
-      - name: Install Python
-        uses: ./.github/actions/setup-py
-
-      - name: Run type checker
-        run: nox -s type-check
+    uses: FasterSpeeding/Piped/.github/workflows/type-check.yml@f824d61c518eb6a04b59e6b02980e5ce0fd80a50

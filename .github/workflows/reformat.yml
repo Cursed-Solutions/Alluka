@@ -1,9 +1,5 @@
 name: Reformat PR code
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 on:
   pull_request:
     branches:
@@ -11,23 +7,5 @@ on:
 
 jobs:
   reformat:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-        with:
-          submodules: "true"
-
-      - name: Install Python
-        uses: ./.github/actions/setup-py
-
-      - name: Reformat
-        run: nox -s reformat bot-package-diff
-
-      - uses: actions/upload-artifact@de65e23aa2b7e23d713bb51fbfcb6d502f8667d8
-        with:
-          name: gogo.patch
-          path: artifacts/gogo.patch
-
-      - name: Check diff file
-        run: nox -s is-diff-file-empty
+    uses: FasterSpeeding/Piped/.github/workflows/reformat.yml@f824d61c518eb6a04b59e6b02980e5ce0fd80a50
+    secrets: inherit

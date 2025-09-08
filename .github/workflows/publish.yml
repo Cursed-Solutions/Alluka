@@ -7,27 +7,9 @@ on:
       - published
 
 jobs:
-  publish-docs:
-    uses: ./.github/workflows/release-docs.yml
-
   publish:
-    name: upload release to PyPI
-    runs-on: ubuntu-latest
-    environment: release
-
     permissions:
       id-token: write
 
-    steps:
-      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-        with:
-          submodules: "true"
-
-      - name: Install Python
-        uses: ./.github/actions/setup-py
-
-      - name: Build project
-        run: nox -s build
-
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e
+    uses: FasterSpeeding/Piped/.github/workflows/publish.yml@f824d61c518eb6a04b59e6b02980e5ce0fd80a50
+    secrets: inherit
