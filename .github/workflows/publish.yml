@@ -11,5 +11,5 @@ jobs:
     permissions:
       id-token: write
 
-    uses: FasterSpeeding/Piped/.github/workflows/publish.yml@adc711961a6c2e5eb5b6c6389103b736356dc8e6
+    uses: FasterSpeeding/Piped/.github/workflows/publish.yml@076d0e3ac85d243cb9ca2123b1144364ce7f8a4b
     secrets: inherit
