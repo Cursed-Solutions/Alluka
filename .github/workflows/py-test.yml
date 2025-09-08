@@ -14,7 +14,7 @@ jobs:
     permissions:
       id-token: write
 
-    uses: FasterSpeeding/Piped/.github/workflows/py-test.yml@bbf25404cc7d40823c6de466c12b6ecdb53629c8
+    uses: FasterSpeeding/Piped/.github/workflows/py-test.yml@12f12b2c1f7aef76182a0337ae9c577661cf6aae
     secrets: inherit
     with:
       os-versions: '["ubuntu-latest", "macos-latest", "windows-latest]'

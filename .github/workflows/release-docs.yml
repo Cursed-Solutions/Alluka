@@ -9,5 +9,5 @@ on:
 
 jobs:
   publish-docs:
-    uses: FasterSpeeding/Piped/.github/workflows/release-docs.yml@bbf25404cc7d40823c6de466c12b6ecdb53629c8
+    uses: FasterSpeeding/Piped/.github/workflows/release-docs.yml@12f12b2c1f7aef76182a0337ae9c577661cf6aae
     secrets: inherit
