@@ -1,3 +1,3 @@
 {
-    "extends": "github>FasterSpeeding/renovate-config"
+  "extends": "github>FasterSpeeding/renovate-config"
 }
