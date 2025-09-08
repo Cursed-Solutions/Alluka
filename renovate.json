@@ -1,14 +1,3 @@
-
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "git-submodules": {
-    "enabled": true
-  },
-  "lockFileMaintenance": {
-    "enabled": true
-  },
-  "pinDigests": true
+  "extends": "github>FasterSpeeding/renovate-config"
 }
