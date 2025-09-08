@@ -9,5 +9,6 @@
   },
   "lockFileMaintenance": {
     "enabled": true
-  }
+  },
+  "pinDigests": true
 }
