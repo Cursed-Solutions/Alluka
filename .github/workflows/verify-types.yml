@@ -11,4 +11,4 @@ on:
 
 jobs:
   verify-types:
-    uses: FasterSpeeding/Piped/.github/workflows/verify-types.yml@7f5789a5b500b5ea084370b88f9ff7716de03d65
+    uses: FasterSpeeding/Piped/.github/workflows/verify-types.yml@2d96ccdfe342b4b489f6ff753ef3ecb49629fade
