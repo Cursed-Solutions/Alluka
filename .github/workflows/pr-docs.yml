@@ -1,9 +1,5 @@
 name: Deploy PR preview docs
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 on:
   pull_request:
     types:
@@ -14,33 +10,11 @@ on:
 
 jobs:
   deploy-docs-preview:
-    runs-on: ubuntu-latest
-
     permissions:
       contents: write
       pull-requests: write
 
-    steps:
-      - name: Fetch merge branch
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          submodules: "true"
-
-      - name: Install Python
-        uses: ./.github/actions/setup-py
-
-      - name: Build docs
-        if: github.event.action != 'closed'
-        run: |
-          mkdir site
-          nox -s generate-docs -- -o ./artifacts/site
-
-      - name: Deploy preview
-        uses: FasterSpeeding/pr-preview-action@task/override-committer
-        with:
-          git-config-email: "120557446+always-on-duty[bot]@users.noreply.github.com"
-          git-config-name: "always-on-duty[bot]"
-          preview-branch: docs
-          source-dir: ./artifacts/site/
+    uses: FasterSpeeding/Piped/.github/workflows/pr-docs.yml@bbf25404cc7d40823c6de466c12b6ecdb53629c8
+    secrets: inherit
+    with:
+      sessions: "verify-markup spell-check lint slot-check"

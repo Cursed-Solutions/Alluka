@@ -128,22 +128,6 @@ mypy_targets = ["alluka"]
 project_name = "alluka"
 top_level_targets = ["./alluka", "./docs_src", "./noxfile.py", "./tests"]
 
-[tool.piped.github_actions.freeze_for_pr]
-[tool.piped.github_actions.lint]
-[tool.piped.github_actions.pr_docs]
-[tool.piped.github_actions.publish]
-[tool.piped.github_actions.py_test]
-codeclimate_token = "a965935acdc9066802d7201945219784c0f24d22e8a2dff0e6529207726bc8af"
-python_versions = ["3.11", "3.12", "3.13", "3.14-dev"]
-
-[tool.piped.github_actions.reformat]
-[tool.piped.github_actions.release_docs]
-[tool.piped.github_actions.resync_piped]
-[tool.piped.github_actions.type_check]
-[tool.piped.github_actions.update_licence]
-[tool.piped.github_actions.upgrade_locks]
-[tool.piped.github_actions.verify_types]
-
 [tool.pycln]
 exclude = "docs_src"
 
