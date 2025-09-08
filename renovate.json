@@ -1,3 +1,4 @@
 {
-  "extends": "github>FasterSpeeding/renovate-config"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>FasterSpeeding/Piped//config/renovate.json"]
 }
