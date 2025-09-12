@@ -4,9 +4,9 @@ on:
   pull_request:
     branches:
       - master
-    paths: ["piped", "pyproject.toml"]
 
 jobs:
   freeze-pr-dep-changes:
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
     uses: FasterSpeeding/Piped/.github/workflows/freeze-for-pr.yml@030a614a47058aded1fc89ab1c28ccd4259a5ce7
     secrets: inherit
